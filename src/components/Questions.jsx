@@ -26,7 +26,7 @@ function Questions() {
 
   return (
     <>
-      <h1>Dynamic Form Fields in React</h1>
+      <h1>Wizard Form</h1>
       <form onSubmit={handleSubmit}>
         <Stepper
           steps={sections}
@@ -40,8 +40,7 @@ function Questions() {
         {currentStep === 1 && (
           <>
             <PersonalInfo1 />
-            <p>{currentStep}</p>
-            <button type="button" onClick={(e) => Next(e)}>Next</button>
+            <button type="button" onClick={Next}>Next</button>
           </>
         )}
 
@@ -50,7 +49,7 @@ function Questions() {
             <Address />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button type="button" onClick={previous}>Back</button>
-              <button type="button" onClick={(e) => Next(e)}>Next</button>
+              <button type="button" onClick={Next}>Next</button>
             </div>
           </>
         )}

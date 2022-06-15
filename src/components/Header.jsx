@@ -5,7 +5,7 @@ import FormContext from '../context/FormContext';
 function Header() {
   const novoCliente = 1;
   const { currentStep, setCurrentStep } = useContext(FormContext);
-  const Next = () => setCurrentStep((prevState) => prevState + 1);
+  const Next = () => setCurrentStep(() => novoCliente);
 
   return (
     <header>

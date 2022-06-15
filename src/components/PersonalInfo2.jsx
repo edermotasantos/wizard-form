@@ -1,21 +1,44 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
-import React from 'react';
+import React, { useContext } from 'react';
+import FormContext from '../context/FormContext';
 
 function PersonalInfo2() {
+  const { bday, setBday } = useContext(FormContext);
+  const { cpf, setCpf } = useContext(FormContext);
+  const { income, setIncome } = useContext(FormContext);
+
   return (
     <div>
       <div>
-        <label htmlFor="fname">Data de Nascimento</label>
-        <input id="fname" name="fname" type="text" />
+        <label htmlFor="bday">Data de Nascimento</label>
+        <input
+          id="bday"
+          name="bday"
+          type="text"
+          value={bday}
+          onChange={(e) => setBday(e.target.value)}
+        />
       </div>
       <div>
-        <label htmlFor="lname">CPF</label>
-        <input id="lname" name="lname" type="text" />
+        <label htmlFor="cpf">CPF</label>
+        <input
+          id="cpf"
+          name="cpf"
+          type="text"
+          value={cpf}
+          onChange={(e) => setCpf(e.target.value)}
+        />
       </div>
       <div>
-        <label htmlFor="fname">Renda Mensal</label>
-        <input id="fname" name="fname" type="text" />
+        <label htmlFor="income">Renda Mensal</label>
+        <input
+          id="income"
+          name="income"
+          type="text"
+          value={income}
+          onChange={(e) => setIncome(e.target.value)}
+        />
       </div>
     </div>
   );

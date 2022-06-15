@@ -8,6 +8,21 @@ import PersonalInfo2 from './PersonalInfo2';
 
 function Questions() {
   const { currentStep, setCurrentStep } = useContext(FormContext);
+  const { newForm, setNewForm } = useContext(FormContext);
+  const { setFirstNameList } = useContext(FormContext);
+  // eslint-disable-next-line no-unused-vars
+  const { dataList, setDataList } = useContext(FormContext);
+  const { firstName } = useContext(FormContext);
+  const { lastName } = useContext(FormContext);
+  const { email } = useContext(FormContext);
+  const { phone } = useContext(FormContext);
+  const { add1 } = useContext(FormContext);
+  const { cep1 } = useContext(FormContext);
+  const { add2 } = useContext(FormContext);
+  const { cep2 } = useContext(FormContext);
+  const { bday } = useContext(FormContext);
+  const { cpf } = useContext(FormContext);
+  const { income } = useContext(FormContext);
 
   const sections = [
     { title: 'Informações Pessoais' },
@@ -16,8 +31,30 @@ function Questions() {
     { title: 'Review' },
   ];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    setNewForm(() => ({
+      firstName,
+      lastName,
+      email,
+      phone,
+      add1,
+      cep1,
+      add2,
+      cep2,
+      bday,
+      cpf,
+      income,
+    }));
+
+    setFirstNameList((prevState) => ({
+      ...prevState,
+      firstName,
+    }));
+
+    setDataList((prevState) => ({
+      ...prevState,
+      newForm,
+    }));
   };
 
   const Next = () => setCurrentStep((prevState) => prevState + 1);
@@ -59,7 +96,7 @@ function Questions() {
             <PersonalInfo2 />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button type="button" onClick={previous}>Back</button>
-              <button type="button" onClick={handleSubmit && Next}>Submit</button>
+              <button type="button" onClick={handleSubmit}>Submit</button>
             </div>
           </>
         )}

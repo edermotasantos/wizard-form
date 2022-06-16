@@ -12,17 +12,6 @@ function Questions() {
   const { newForm, setNewForm } = useContext(FormContext);
   const { usersArr, setUsersArr } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
-  const { firstName } = useContext(FormContext);
-  const { lastName } = useContext(FormContext);
-  const { email } = useContext(FormContext);
-  const { phone } = useContext(FormContext);
-  const { add1 } = useContext(FormContext);
-  const { cep1 } = useContext(FormContext);
-  const { add2 } = useContext(FormContext);
-  const { cep2 } = useContext(FormContext);
-  const { bday } = useContext(FormContext);
-  const { cpf } = useContext(FormContext);
-  const { income } = useContext(FormContext);
 
   const arrayStorage = [];
 
@@ -85,6 +74,7 @@ function Questions() {
             </div>
           </>
         )}
+
         {currentStep === 4 && (
           <p>cadastro concluído com sucesso</p>
         )}

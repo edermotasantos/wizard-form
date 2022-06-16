@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
@@ -6,19 +7,17 @@ import FormContext from '../context/FormContext';
 
 function PersonalInfo() {
   const { newForm, setNewForm } = useContext(FormContext);
-  const { bday, setBday } = useContext(FormContext);
-  const { cpf, setCpf } = useContext(FormContext);
-  const { income, setIncome } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
+  const {
+    birth_day,
+    cpf,
+    income,
+  } = newForm;
 
   const handleChange = ({ target: { value, name } }) => {
     setNewForm((prevState) => ({
       ...prevState,
       [name]: value,
-    }));
-    setDataList((prevState) => ({
-      ...prevState,
-      newForm,
     }));
     console.log(dataList);
   };
@@ -29,12 +28,11 @@ function PersonalInfo() {
         <label htmlFor="bday">Data de Nascimento</label>
         <input
           id="bday"
-          name="bday"
+          name="birth_day"
           type="text"
-          value={bday}
+          value={birth_day}
           onChange={(e) => {
             handleChange(e);
-            setBday(e.target.value);
           }}
         />
       </div>
@@ -47,7 +45,6 @@ function PersonalInfo() {
           value={cpf}
           onChange={(e) => {
             handleChange(e);
-            setCpf(e.target.value);
           }}
         />
       </div>
@@ -60,7 +57,6 @@ function PersonalInfo() {
           value={income}
           onChange={(e) => {
             handleChange(e);
-            setIncome(e.target.value);
           }}
         />
       </div>

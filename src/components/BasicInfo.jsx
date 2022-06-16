@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
@@ -5,30 +6,40 @@ import React, { useContext } from 'react';
 import FormContext from '../context/FormContext';
 
 function BasicInfo() {
-  const { firstName, setFirstName } = useContext(FormContext);
-  const { lastName, setLastName } = useContext(FormContext);
-  const { email, setEmail } = useContext(FormContext);
-  const { phone, setPhone } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
-  const { firstNameList, setFirstNameList } = useContext(FormContext);
+  const { usersArr, setUsersArr } = useContext(FormContext);
   const { newId, setNewId } = useContext(FormContext);
+  const { dataList, setDataList } = useContext(FormContext);
+  const {
+    first_name,
+    last_name,
+    email,
+    phone,
+  } = newForm;
 
   const handleChange = ({ target: { value, name } }) => {
-    if (firstName !== undefined && lastName !== undefined) {
-      const fullName = `${firstName} ${lastName}`;
-      const userObj = { newId, fullName };
-      const formObj = { ...newForm };
-      setFirstNameList((prevState) => ({
+    if (first_name !== undefined && last_name !== undefined) {
+      const fullName = `${first_name} ${last_name}`;
+      const userObj = { id: newId, full_name: fullName };
+
+      setUsersArr((prevState) => ({
         ...prevState,
-        userObj,
+        user_info: userObj,
       }));
-      setNewForm(() => userObj);
+
+      setNewForm((prevState) => ({
+        ...prevState,
+        user_info: userObj,
+      }));
     }
 
     setNewForm((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+    console.log('newForm', newForm);
+    console.log('usersArr', usersArr);
+    // console.log('dataList', dataList.length);
   };
 
   return (
@@ -38,12 +49,11 @@ function BasicInfo() {
         <input
           placeholder="Escreva o seu nome"
           id="firstName"
-          name="firstName"
+          name="first_name"
           type="text"
-          value={firstName}
+          value={first_name}
           onChange={(e) => {
             handleChange(e);
-            setFirstName(e.target.value);
           }}
         />
       </div>
@@ -51,12 +61,11 @@ function BasicInfo() {
         <label htmlFor="lastName">Sobrenome</label>
         <input
           id="lastName"
-          name="lastName"
+          name="last_name"
           type="text"
-          value={lastName}
+          value={last_name}
           onChange={(e) => {
             handleChange(e);
-            setLastName(e.target.value);
           }}
         />
       </div>
@@ -69,7 +78,6 @@ function BasicInfo() {
           value={email}
           onChange={(e) => {
             handleChange(e);
-            setEmail(e.target.value);
           }}
         />
       </div>
@@ -82,7 +90,6 @@ function BasicInfo() {
           value={phone}
           onChange={(e) => {
             handleChange(e);
-            setPhone(e.target.value);
           }}
         />
       </div>

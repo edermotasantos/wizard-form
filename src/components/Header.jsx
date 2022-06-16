@@ -6,7 +6,6 @@ import FormContext from '../context/FormContext';
 const randomId = require('random-id');
 
 function Header() {
-  // eslint-disable-next-line no-unused-vars
   const { newId, setNewId } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
 
@@ -21,7 +20,6 @@ function Header() {
   };
 
   const novoCliente = 1;
-  // eslint-disable-next-line no-unused-vars
   const { currentStep, setCurrentStep } = useContext(FormContext);
   const Next = () => setCurrentStep(() => novoCliente);
 

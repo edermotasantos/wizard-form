@@ -10,8 +10,7 @@ import PersonalInfo from './PersonalInfo';
 function Questions() {
   const { currentStep, setCurrentStep } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
-  const { firstNameList, setFirstNameList } = useContext(FormContext);
-  // eslint-disable-next-line no-unused-vars
+  const { usersArr, setUsersArr } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
   const { firstName } = useContext(FormContext);
   const { lastName } = useContext(FormContext);
@@ -25,6 +24,8 @@ function Questions() {
   const { cpf } = useContext(FormContext);
   const { income } = useContext(FormContext);
 
+  const arrayStorage = [];
+
   const sections = [
     { title: 'Informações Pessoais' },
     { title: 'Endereço' },
@@ -32,10 +33,13 @@ function Questions() {
     { title: 'Review' },
   ];
 
-  const handleSubmit = () => {
-    console.log(setNewForm);
-    console.log(firstNameList);
-    console.log(dataList);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    arrayStorage.push(newForm);
+    const stringStorage = JSON.stringify(arrayStorage);
+    localStorage.setItem('lista_de_usuários', stringStorage);
+    const arrStorage = JSON.parse(localStorage.getItem('lista_de_usuários'));
+    console.log('arrayStorage', arrStorage);
   };
 
   const Next = () => setCurrentStep((prevState) => prevState + 1);
@@ -45,7 +49,7 @@ function Questions() {
   return (
     <>
       <h1>Wizard Form</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Stepper
           steps={sections}
           activeStep={currentStep}
@@ -74,7 +78,6 @@ function Questions() {
 
         {currentStep === 3 && (
           <>
-            {/* <PersonalInfo2 /> */}
             <PersonalInfo />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button type="button" onClick={previous}>Back</button>

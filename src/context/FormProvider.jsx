@@ -6,63 +6,30 @@ import FormContext from './FormContext';
 // eslint-disable-next-line react/prop-types
 function FormProvider({ children }) {
   const [currentStep, setCurrentStep] = useState(0);
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
-  const [add1, setAdd1] = useState();
-  const [cep1, setCep1] = useState();
-  const [add2, setAdd2] = useState();
-  const [cep2, setCep2] = useState();
-  const [bday, setBday] = useState();
-  const [cpf, setCpf] = useState();
-  const [income, setIncome] = useState();
   const [newForm, setNewForm] = useState({
-    firstName,
-    lastName,
-    email,
-    phone,
-    add1,
-    cep1,
-    add2,
-    cep2,
-    bday,
-    cpf,
-    income,
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone: '',
+    address_1: '',
+    cep_1: '',
+    address_2: '',
+    cep_2: '',
+    birth_day: '',
+    cpf: '',
+    income: '',
   });
-  const [firstNameList, setFirstNameList] = useState([]);
+  const [usersArr, setUsersArr] = useState([]);
   const [dataList, setDataList] = useState([]);
-  const [newId, setNewId] = useState();
+  const [newId, setNewId] = useState(0);
 
   const data = {
     currentStep,
     setCurrentStep,
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    phone,
-    setPhone,
-    add1,
-    setAdd1,
-    cep1,
-    setCep1,
-    add2,
-    setAdd2,
-    cep2,
-    setCep2,
-    bday,
-    setBday,
-    cpf,
-    setCpf,
-    income,
-    setIncome,
     newForm,
     setNewForm,
-    firstNameList,
-    setFirstNameList,
+    usersArr,
+    setUsersArr,
     dataList,
     setDataList,
     newId,

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
 import React, { useContext } from 'react';
@@ -16,6 +15,7 @@ function Address() {
       ...prevState,
       [name]: value,
     }));
+    console.log(newForm);
   };
 
   return (

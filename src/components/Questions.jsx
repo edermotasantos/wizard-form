@@ -3,9 +3,9 @@
 import React, { useContext } from 'react';
 import Stepper from 'react-stepper-horizontal';
 import FormContext from '../context/FormContext';
-import PersonalInfo1 from './PersonalInfo1';
+import BasicInfo from './BasicInfo';
 import Address from './Address';
-import PersonalInfo2 from './PersonalInfo2';
+import PersonalInfo from './PersonalInfo';
 
 function Questions() {
   const { currentStep, setCurrentStep } = useContext(FormContext);
@@ -57,7 +57,7 @@ function Questions() {
 
         {currentStep === 1 && (
           <>
-            <PersonalInfo1 />
+            <BasicInfo />
             <button type="button" onClick={Next}>Next</button>
           </>
         )}
@@ -74,7 +74,8 @@ function Questions() {
 
         {currentStep === 3 && (
           <>
-            <PersonalInfo2 />
+            {/* <PersonalInfo2 /> */}
+            <PersonalInfo />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button type="button" onClick={previous}>Back</button>
               <button type="button" onClick={handleSubmit}>Submit</button>

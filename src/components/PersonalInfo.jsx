@@ -4,23 +4,23 @@
 import React, { useContext } from 'react';
 import FormContext from '../context/FormContext';
 
-function PersonalInfo2() {
+function PersonalInfo() {
+  const { newForm, setNewForm } = useContext(FormContext);
   const { bday, setBday } = useContext(FormContext);
   const { cpf, setCpf } = useContext(FormContext);
   const { income, setIncome } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
-  const { newForm, setNewForm } = useContext(FormContext);
 
   const handleChange = ({ target: { value, name } }) => {
     setNewForm((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-
     setDataList((prevState) => ({
       ...prevState,
       newForm,
     }));
+    console.log(dataList);
   };
 
   return (
@@ -30,7 +30,7 @@ function PersonalInfo2() {
         <input
           id="bday"
           name="bday"
-          type="number"
+          type="text"
           value={bday}
           onChange={(e) => {
             handleChange(e);
@@ -43,7 +43,7 @@ function PersonalInfo2() {
         <input
           id="cpf"
           name="cpf"
-          type="number"
+          type="text"
           value={cpf}
           onChange={(e) => {
             handleChange(e);
@@ -56,7 +56,7 @@ function PersonalInfo2() {
         <input
           id="income"
           name="income"
-          type="number"
+          type="text"
           value={income}
           onChange={(e) => {
             handleChange(e);
@@ -68,4 +68,4 @@ function PersonalInfo2() {
   );
 }
 
-export default PersonalInfo2;
+export default PersonalInfo;

@@ -4,23 +4,30 @@
 import React, { useContext } from 'react';
 import FormContext from '../context/FormContext';
 
-function PersonalInfo1() {
+function BasicInfo() {
   const { firstName, setFirstName } = useContext(FormContext);
   const { lastName, setLastName } = useContext(FormContext);
   const { email, setEmail } = useContext(FormContext);
   const { phone, setPhone } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
   const { firstNameList, setFirstNameList } = useContext(FormContext);
+  const { newId, setNewId } = useContext(FormContext);
 
   const handleChange = ({ target: { value, name } }) => {
-    const fullName = `${firstName} ${lastName}`;
+    if (firstName !== undefined && lastName !== undefined) {
+      const fullName = `${firstName} ${lastName}`;
+      const userObj = { newId, fullName };
+      const formObj = { ...newForm };
+      setFirstNameList((prevState) => ({
+        ...prevState,
+        userObj,
+      }));
+      setNewForm(() => userObj);
+    }
+
     setNewForm((prevState) => ({
       ...prevState,
       [name]: value,
-    }));
-    setFirstNameList((prevState) => ({
-      ...prevState,
-      fullName,
     }));
   };
 
@@ -83,4 +90,4 @@ function PersonalInfo1() {
   );
 }
 
-export default PersonalInfo1;
+export default BasicInfo;

@@ -32,6 +32,7 @@ function FormProvider({ children }) {
   });
   const [firstNameList, setFirstNameList] = useState([]);
   const [dataList, setDataList] = useState([]);
+  const [newId, setNewId] = useState();
 
   const data = {
     currentStep,
@@ -64,6 +65,8 @@ function FormProvider({ children }) {
     setFirstNameList,
     dataList,
     setDataList,
+    newId,
+    setNewId,
   };
 
   return (

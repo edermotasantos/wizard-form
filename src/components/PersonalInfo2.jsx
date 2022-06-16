@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
 import React, { useContext } from 'react';
@@ -7,6 +8,20 @@ function PersonalInfo2() {
   const { bday, setBday } = useContext(FormContext);
   const { cpf, setCpf } = useContext(FormContext);
   const { income, setIncome } = useContext(FormContext);
+  const { dataList, setDataList } = useContext(FormContext);
+  const { newForm, setNewForm } = useContext(FormContext);
+
+  const handleChange = ({ target: { value, name } }) => {
+    setNewForm((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+
+    setDataList((prevState) => ({
+      ...prevState,
+      newForm,
+    }));
+  };
 
   return (
     <div>
@@ -15,9 +30,12 @@ function PersonalInfo2() {
         <input
           id="bday"
           name="bday"
-          type="text"
+          type="number"
           value={bday}
-          onChange={(e) => setBday(e.target.value)}
+          onChange={(e) => {
+            handleChange(e);
+            setBday(e.target.value);
+          }}
         />
       </div>
       <div>
@@ -25,9 +43,12 @@ function PersonalInfo2() {
         <input
           id="cpf"
           name="cpf"
-          type="text"
+          type="number"
           value={cpf}
-          onChange={(e) => setCpf(e.target.value)}
+          onChange={(e) => {
+            handleChange(e);
+            setCpf(e.target.value);
+          }}
         />
       </div>
       <div>
@@ -35,9 +56,12 @@ function PersonalInfo2() {
         <input
           id="income"
           name="income"
-          type="text"
+          type="number"
           value={income}
-          onChange={(e) => setIncome(e.target.value)}
+          onChange={(e) => {
+            handleChange(e);
+            setIncome(e.target.value);
+          }}
         />
       </div>
     </div>

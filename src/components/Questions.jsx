@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 import React, { useContext } from 'react';
 import Stepper from 'react-stepper-horizontal';
@@ -9,7 +10,7 @@ import PersonalInfo2 from './PersonalInfo2';
 function Questions() {
   const { currentStep, setCurrentStep } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
-  const { setFirstNameList } = useContext(FormContext);
+  const { firstNameList, setFirstNameList } = useContext(FormContext);
   // eslint-disable-next-line no-unused-vars
   const { dataList, setDataList } = useContext(FormContext);
   const { firstName } = useContext(FormContext);
@@ -32,29 +33,9 @@ function Questions() {
   ];
 
   const handleSubmit = () => {
-    setNewForm(() => ({
-      firstName,
-      lastName,
-      email,
-      phone,
-      add1,
-      cep1,
-      add2,
-      cep2,
-      bday,
-      cpf,
-      income,
-    }));
-
-    setFirstNameList((prevState) => ({
-      ...prevState,
-      firstName,
-    }));
-
-    setDataList((prevState) => ({
-      ...prevState,
-      newForm,
-    }));
+    console.log(setNewForm);
+    console.log(firstNameList);
+    console.log(dataList);
   };
 
   const Next = () => setCurrentStep((prevState) => prevState + 1);
@@ -64,7 +45,7 @@ function Questions() {
   return (
     <>
       <h1>Wizard Form</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <Stepper
           steps={sections}
           activeStep={currentStep}

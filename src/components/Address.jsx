@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
 import React, { useContext } from 'react';
@@ -8,6 +9,14 @@ function Address() {
   const { cep1, setCep1 } = useContext(FormContext);
   const { add2, setAdd2 } = useContext(FormContext);
   const { cep2, setCep2 } = useContext(FormContext);
+  const { newForm, setNewForm } = useContext(FormContext);
+
+  const handleChange = ({ target: { value, name } }) => {
+    setNewForm((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   return (
     <div>
@@ -18,7 +27,10 @@ function Address() {
           name="add1"
           type="text"
           value={add1}
-          onChange={(e) => setAdd1(e.target.value)}
+          onChange={(e) => {
+            handleChange(e);
+            setAdd1(e.target.value);
+          }}
         />
       </div>
       <div>
@@ -28,7 +40,10 @@ function Address() {
           name="cep1"
           type="text"
           value={cep1}
-          onChange={(e) => setCep1(e.target.value)}
+          onChange={(e) => {
+            handleChange(e);
+            setCep1(e.target.value);
+          }}
         />
       </div>
       <div>
@@ -38,7 +53,10 @@ function Address() {
           name="add2"
           type="text"
           value={add2}
-          onChange={(e) => setAdd2(e.target.value)}
+          onChange={(e) => {
+            handleChange(e);
+            setAdd2(e.target.value);
+          }}
         />
       </div>
       <div>
@@ -48,7 +66,10 @@ function Address() {
           name="cep2"
           type="text"
           value={cep2}
-          onChange={(e) => setCep2(e.target.value)}
+          onChange={(e) => {
+            handleChange(e);
+            setCep2(e.target.value);
+          }}
         />
       </div>
     </div>

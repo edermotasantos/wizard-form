@@ -9,18 +9,19 @@ function Header() {
   const { newId, setNewId } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
 
-  const genId = () => {
+  const genId = async (e) => {
     const len = 30;
     const pattern = 'aA0';
 
-    const id = randomId(len, pattern);
-    setNewId(id);
-    setNewForm(newId);
+    const id = await randomId(len, pattern);
+    await setNewId(id);
+    console.log('e.target.value', e.target.value);
     console.log('newId', newId);
   };
 
   const novoCliente = 1;
   const { currentStep, setCurrentStep } = useContext(FormContext);
+  const { selectedValue, setSelectedValue } = useContext(FormContext);
   const Next = () => setCurrentStep(() => novoCliente);
 
   return (
@@ -29,6 +30,7 @@ function Header() {
       <div>
         <select
           name="menu"
+          value={selectedValue}
           onChange={
             (e) => {
               Next(e);
@@ -36,8 +38,8 @@ function Header() {
             }
           }
         >
-          <option value="" disabled selected>Menu</option>
-          <option value={novoCliente}>Novo Cliente</option>
+          <option value={0} disabled selected>Menu</option>
+          <option value={1}>Novo Cliente</option>
           <option value={novoCliente + 1}>Lista de Clientes</option>
         </select>
       </div>

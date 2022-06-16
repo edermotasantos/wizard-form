@@ -22,6 +22,7 @@ function FormProvider({ children }) {
   const [usersArr, setUsersArr] = useState([]);
   const [dataList, setDataList] = useState([]);
   const [newId, setNewId] = useState(0);
+  const [selectedValue, setSelectedValue] = useState(0);
 
   const data = {
     currentStep,
@@ -34,6 +35,8 @@ function FormProvider({ children }) {
     setDataList,
     newId,
     setNewId,
+    selectedValue,
+    setSelectedValue,
   };
 
   return (

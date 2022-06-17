@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-wrap-multilines */
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 import React, { useContext } from 'react';
@@ -14,6 +16,7 @@ function Questions() {
   const { dataList, setDataList } = useContext(FormContext);
   const { selectedValue, setSelectedValue } = useContext(FormContext);
   const { countUsersData, setCountUsersData } = useContext(FormContext);
+  const { emptyList, setEmptyList } = useContext(FormContext);
 
   const sections = [
     { title: 'Informações Pessoais' },
@@ -51,6 +54,8 @@ function Questions() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setEmptyList(false);
 
     setSelectedValue(0);
     clearNewForm();
@@ -124,7 +129,19 @@ function Questions() {
 
       {currentStep === 5 && (
       <div>
-        <h2>Lista de Usuários</h2>
+        <div>
+          { emptyList ? <h3>Lista vazia :/</h3>
+            : Object.values(usersArr).map((item) => (
+              <div>
+                <div>
+                  {Object.values(item)[0]}
+                </div>
+                <div>
+                  {Object.values(item)[1]}
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
       )}
     </form>

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 import React, { useContext } from 'react';
@@ -9,6 +10,7 @@ function Header() {
   const { newId, setNewId } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
+  const { usersArr, setUsersArr } = useContext(FormContext);
 
   const genId = async (e) => {
     const len = 30;
@@ -30,9 +32,16 @@ function Header() {
     setCurrentStep(() => num);
   };
 
+  const listUsers = () => {
+    usersArr.map(({ id, full_name }) => `${id} ${full_name}\n`);
+  };
+
   const setvalue = ({ target: { value } }) => {
     setSelectedValue(value);
     setSelectedValue(0);
+    if (value === 5) {
+      listUsers();
+    }
   };
 
   return (

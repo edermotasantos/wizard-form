@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
@@ -79,6 +80,13 @@ function Questions() {
     Next(e);
   };
 
+  const showUser = (e) => {
+    // console.log('texto clicável', innerText);
+    // e.target.nodeName.innerText = '0';
+    console.log(e.target.nodeName);
+    // alert(event.target.innerText);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       {(currentStep > 0 && currentStep < 5) && (
@@ -130,17 +138,30 @@ function Questions() {
       {currentStep === 5 && (
       <div>
         <div>
-          { emptyList ? <h3>Lista vazia :/</h3>
-            : Object.values(usersArr).map((item) => (
-              <div>
+          { emptyList ? <h3>Lista vazia</h3>
+            : (
+              <>
                 <div>
+                  <h3>id</h3>
+                </div>
+                <div>
+                  <h3>nome</h3>
+                </div>
+              </>
+            )}
+        </div>
+        <div>
+          { emptyList ? <h5>Não há usuários cadastrados</h5>
+            : (Object.values(usersArr).map((item) => (
+              <a href={Object.values(item)[1].replace(/ /g, '-').toLowerCase()} key={Object.values(item)[0].substr(0, 3)}>
+                <div onChange={(e) => showUser(e)}>
                   {Object.values(item)[0]}
                 </div>
-                <div>
+                <div onChange={(e) => showUser(e)}>
                   {Object.values(item)[1]}
                 </div>
-              </div>
-            ))}
+              </a>
+            )))}
         </div>
       </div>
       )}

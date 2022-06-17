@@ -8,6 +8,7 @@ const randomId = require('random-id');
 function Header() {
   const { newId, setNewId } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
+  const { dataList, setDataList } = useContext(FormContext);
 
   const genId = async (e) => {
     const len = 30;
@@ -17,12 +18,22 @@ function Header() {
     await setNewId(id);
     console.log('e.target.value', e.target.value);
     console.log('newId', newId);
+    const arrStorage = JSON.parse(localStorage.getItem('lista_de_usuários'));
+    console.log('dataList', dataList);
+    console.log('arrStorage', arrStorage);
   };
 
-  const novoCliente = 1;
   const { currentStep, setCurrentStep } = useContext(FormContext);
   const { selectedValue, setSelectedValue } = useContext(FormContext);
-  const Next = () => setCurrentStep(() => novoCliente);
+  const Next = ({ target: { value } }) => {
+    const num = parseInt(value, 10);
+    setCurrentStep(() => num);
+  };
+
+  const setvalue = ({ target: { value } }) => {
+    setSelectedValue(value);
+    setSelectedValue(0);
+  };
 
   return (
     <header>
@@ -33,6 +44,7 @@ function Header() {
           value={selectedValue}
           onChange={
             (e) => {
+              setvalue(e);
               Next(e);
               genId(e);
             }
@@ -40,7 +52,7 @@ function Header() {
         >
           <option value={0} disabled selected>Menu</option>
           <option value={1}>Novo Cliente</option>
-          <option value={novoCliente + 1}>Lista de Clientes</option>
+          <option value={5}>Lista de Clientes</option>
         </select>
       </div>
     </header>

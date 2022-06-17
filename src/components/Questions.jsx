@@ -13,8 +13,7 @@ function Questions() {
   const { usersArr, setUsersArr } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
   const { selectedValue, setSelectedValue } = useContext(FormContext);
-
-  const arrayStorage = [];
+  const { countUsersData, setCountUsersData } = useContext(FormContext);
 
   const sections = [
     { title: 'Informações Pessoais' },
@@ -52,15 +51,26 @@ function Questions() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setSelectedValue(0);
     clearNewForm();
-    arrayStorage.push(newForm);
-    const stringStorage = JSON.stringify(arrayStorage);
+
+    setDataList((prevState) => ({
+      ...prevState,
+      [countUsersData]: newForm,
+    }));
+
+    console.log(countUsersData);
+    setCountUsersData((prevState) => prevState + 1);
+
+    const stringStorage = JSON.stringify(dataList);
     localStorage.setItem('lista_de_usuários', stringStorage);
     const arrStorage = JSON.parse(localStorage.getItem('lista_de_usuários'));
-    console.log('arrayStorage', arrStorage);
 
-    localStorage.clear();
+    console.log('dataList', dataList);
+    console.log('arrStorage', arrStorage);
+    // localStorage.clear();
+    console.log('usersArr', usersArr);
     Next(e);
   };
 
@@ -110,6 +120,12 @@ function Questions() {
 
       {currentStep === 4 && (
       <h2>cadastro concluído com sucesso!</h2>
+      )}
+
+      {currentStep === 5 && (
+      <div>
+        <h2>Lista de Usuários</h2>
+      </div>
       )}
     </form>
   );

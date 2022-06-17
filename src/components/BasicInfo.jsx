@@ -10,6 +10,7 @@ function BasicInfo() {
   const { usersArr, setUsersArr } = useContext(FormContext);
   const { newId, setNewId } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
+  const { countUsersData, setCountUsersData } = useContext(FormContext);
   const {
     first_name,
     last_name,
@@ -24,7 +25,7 @@ function BasicInfo() {
 
       setUsersArr((prevState) => ({
         ...prevState,
-        user_info: userObj,
+        [countUsersData]: userObj,
       }));
 
       setNewForm((prevState) => ({

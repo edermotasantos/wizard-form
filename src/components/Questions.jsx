@@ -26,6 +26,7 @@ import Address from './Address';
 import BasicInfo from './BasicInfo';
 import FormContext from '../context/FormContext';
 import Copyright from './Copyright';
+import Next from './Next';
 
 const theme = createTheme();
 
@@ -70,7 +71,7 @@ function Questions() {
     'salário mensal:',
   ];
 
-  const Next = () => setCurrentStep((prevState) => prevState + 1);
+  const next = () => setCurrentStep((prevState) => prevState + 1);
 
   const previous = () => setCurrentStep((prevState) => prevState - 1);
 
@@ -121,7 +122,7 @@ function Questions() {
     console.log('arrStorage', arrStorage);
     // localStorage.clear();
     console.log('usersArr', usersArr);
-    Next(e);
+    next(e);
   };
 
   const showUserData = async (value) => {
@@ -136,17 +137,14 @@ function Questions() {
 
     setUserPage(user);
     console.log(user);
-    Next();
+    next();
   };
 
   return (
     <form onSubmit={handleSubmit}>
 
       {currentStep === 1 && (
-      <>
         <BasicInfo />
-        <button type="button" onClick={Next}>Next</button>
-      </>
       )}
 
       {currentStep === 2 && (
@@ -154,7 +152,8 @@ function Questions() {
         <Address />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <button type="button" onClick={previous}>Back</button>
-          <button type="button" onClick={Next}>Next</button>
+          {/* <button type="button" onClick={Next}>Next</button> */}
+          <Next />
         </div>
       </>
       )}

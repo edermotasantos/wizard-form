@@ -14,6 +14,7 @@ import FormContext from '../context/FormContext';
 import Copyright from './Copyright';
 
 const theme = createTheme();
+
 function PersonalInfo() {
   const { newForm, setNewForm } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);

@@ -113,7 +113,7 @@ function Questions() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {(currentStep > 0 && currentStep < 5) && (
+      {/* {(currentStep > 0 && currentStep < 5) && (
       <div>
         <h1>Novo Usuário</h1>
         <Stepper
@@ -125,7 +125,7 @@ function Questions() {
           completeBarColor="green"
         />
       </div>
-      )}
+      )} */}
 
       {currentStep === 1 && (
       <>
@@ -151,7 +151,6 @@ function Questions() {
           <button type="button" onClick={previous}>Back</button>
           <button type="button" onClick={handleSubmit}>Submit</button>
         </div>
-        { currentStep }
       </>
       )}
 

@@ -3,8 +3,17 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-expressions */
 import React, { useContext } from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FormContext from '../context/FormContext';
+import Copyright from './Copyright';
 
+const theme = createTheme();
 function PersonalInfo() {
   const { newForm, setNewForm } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
@@ -23,44 +32,73 @@ function PersonalInfo() {
   };
 
   return (
-    <div>
-      <div>
-        <label htmlFor="bday">Data de Nascimento</label>
-        <input
-          id="bday"
-          name="birth_day"
-          type="text"
-          value={birth_day}
-          onChange={(e) => {
-            handleChange(e);
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
-        />
-      </div>
-      <div>
-        <label htmlFor="cpf">CPF</label>
-        <input
-          id="cpf"
-          name="cpf"
-          type="text"
-          value={cpf}
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        />
-      </div>
-      <div>
-        <label htmlFor="income">Renda Mensal</label>
-        <input
-          id="income"
-          name="income"
-          type="text"
-          value={income}
-          onChange={(e) => {
-            handleChange(e);
-          }}
-        />
-      </div>
-    </div>
+        >
+          <Typography component="h1" variant="h5">
+            Dados Pessoais
+          </Typography>
+          <Box component="div" sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-birth_day"
+                  name="birth_day"
+                  required
+                  fullWidth
+                  id="bday"
+                  label="Data de Nascimento"
+                  autoFocus
+                  value={birth_day}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-cpf"
+                  name="cpf"
+                  required
+                  fullWidth
+                  id="cpf"
+                  label="CPF"
+                  autoFocus
+                  value={cpf}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-income"
+                  name="income"
+                  required
+                  fullWidth
+                  id="income"
+                  label="Renda Mensal"
+                  autoFocus
+                  value={income}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 5 }} />
+      </Container>
+    </ThemeProvider>
   );
 }
 

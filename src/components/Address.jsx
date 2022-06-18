@@ -17,19 +17,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FormContext from '../context/FormContext';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://github.com/edermotasantos/wizard-form">
-        github
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from './Copyright';
 
 const theme = createTheme();
 
@@ -64,7 +52,7 @@ function Address() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Endereço
+            Endereços
           </Typography>
           <Box component="div" sx={{ mt: 3 }}>
             <Grid container spacing={2}>

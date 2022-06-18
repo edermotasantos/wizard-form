@@ -20,6 +20,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { DataGrid } from '@mui/x-data-grid';
 import PersonalInfo from './PersonalInfo';
 import Address from './Address';
 import BasicInfo from './BasicInfo';
@@ -231,7 +232,6 @@ function Questions() {
 
       {currentStep === 6 && (
         <div>
-          <h2>Dados do usuário</h2>
           <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
               <CssBaseline />
@@ -244,7 +244,7 @@ function Questions() {
                 }}
               >
                 <Typography component="h1" variant="h5">
-                  Usuários Cadastrados
+                  <h2>Dados do usuário</h2>
                 </Typography>
                 <List
                   component="nav"
@@ -252,35 +252,18 @@ function Questions() {
                   sx={style}
                 >
                   <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                      {(labelsArr.map((item) => (
-                        <>
-                          <ListItem
-                            divider
-                            value={Object.values(item)}
-                            item
-                            xs={12}
-                            sm={6}
-                          >
-                            <ListItemText primary={Object.values(item)} />
-                          </ListItem>
-                          <Divider />
-                        </>
-                      )))}
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12}>
                       { emptyList
                         ? <h3>Lista vazia</h3>
-                        : (userPage.map((item) => (
+                        : (userPage.map((item, index) => (
                           <>
                             <ListItem
                               divider
                               value={Object.values(item)}
                               item
                               xs={12}
-                              sm={6}
                             >
-                              <ListItemText primary={Object.values(item)} />
+                              <ListItemText primary={`${labelsArr[index]} ${Object.values(item)}`.replace(/,/g, '')} />
                             </ListItem>
                             <Divider />
                           </>

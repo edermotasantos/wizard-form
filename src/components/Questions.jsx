@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable camelcase */
@@ -18,12 +20,26 @@ function Questions() {
   const { selectedValue, setSelectedValue } = useContext(FormContext);
   const { countUsersData, setCountUsersData } = useContext(FormContext);
   const { emptyList, setEmptyList } = useContext(FormContext);
+  const { userPage, setUserPage } = useContext(FormContext);
 
   const sections = [
     { title: 'Informações Pessoais' },
     { title: 'Endereço' },
     { title: 'Data de Nascimento' },
     { title: 'Review' },
+  ];
+
+  const labelsArr = [
+    'nome completo:',
+    'e-mail:',
+    'telefone:',
+    'endereço 1:',
+    'CEP 1:',
+    'endereço 2:',
+    'CEP 2:',
+    'data de nascimento:',
+    'CPF:',
+    'salário mensal:',
   ];
 
   const Next = () => setCurrentStep((prevState) => prevState + 1);
@@ -56,15 +72,15 @@ function Questions() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setEmptyList(false);
-
     setSelectedValue(0);
-    clearNewForm();
 
     setDataList((prevState) => ({
       ...prevState,
       [countUsersData]: newForm,
     }));
+
+    clearNewForm();
+    setEmptyList(false);
 
     console.log(countUsersData);
     setCountUsersData((prevState) => prevState + 1);
@@ -80,11 +96,19 @@ function Questions() {
     Next(e);
   };
 
-  const showUser = (e) => {
-    // console.log('texto clicável', innerText);
-    // e.target.nodeName.innerText = '0';
-    console.log(e.target.nodeName);
-    // alert(event.target.innerText);
+  const showUserData = async ({ currentTarget: { value } }) => {
+    console.log(value, 'valor do botão');
+    const arrStorage = await JSON.parse(localStorage.getItem('lista_de_usuários'));
+    let user = Object.values(arrStorage).find(({ user_info: { id } }) => id === value);
+    const userSpliced = Object.values(user).splice(2, 9);
+    user = Object.values(user);
+    user = user[11];
+    user = Object.values(user);
+    user = [user[1], ...userSpliced];
+
+    setUserPage(user);
+    console.log(user);
+    Next();
   };
 
   return (
@@ -153,17 +177,41 @@ function Questions() {
         <div>
           { emptyList ? <h5>Não há usuários cadastrados</h5>
             : (Object.values(usersArr).map((item) => (
-              <a href={Object.values(item)[1].replace(/ /g, '-').toLowerCase()} key={Object.values(item)[0].substr(0, 3)}>
-                <div onChange={(e) => showUser(e)}>
-                  {Object.values(item)[0]}
+              <button value={Object.values(item)[0]} type="button" onClick={(e) => showUserData(e)}>
+                <div style={{ width: 800 }}>
+                  id: ${Object.values(item)[0]}
                 </div>
-                <div onChange={(e) => showUser(e)}>
-                  {Object.values(item)[1]}
+                <div>
+                  nome: {Object.values(item)[1]}
                 </div>
-              </a>
+              </button>
             )))}
         </div>
       </div>
+      )}
+
+      {currentStep === 6 && (
+        <div>
+          <h2>Dados do usuário</h2>
+          <div>
+            { (userPage.map((item) => (
+              <div value={item}>
+                <div>
+                  {Object.values(item)}
+                </div>
+              </div>
+            )))}
+          </div>
+          <div>
+            { (labelsArr.map((item) => (
+              <div value={item}>
+                <div>
+                  {Object.values(item)}
+                </div>
+              </div>
+            )))}
+          </div>
+        </div>
       )}
     </form>
   );

@@ -25,6 +25,7 @@ function FormProvider({ children }) {
   const [selectedValue, setSelectedValue] = useState(0);
   const [countUsersData, setCountUsersData] = useState(0);
   const [emptyList, setEmptyList] = useState(true);
+  const [userPage, setUserPage] = useState();
 
   const data = {
     currentStep,
@@ -43,6 +44,8 @@ function FormProvider({ children }) {
     setCountUsersData,
     emptyList,
     setEmptyList,
+    userPage,
+    setUserPage,
   };
 
   return (

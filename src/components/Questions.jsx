@@ -7,10 +7,38 @@
 /* eslint-disable no-unused-expressions */
 import React, { useContext } from 'react';
 import Stepper from 'react-stepper-horizontal';
-import FormContext from '../context/FormContext';
-import BasicInfo from './BasicInfo';
-import Address from './Address';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+} from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PersonalInfo from './PersonalInfo';
+import Address from './Address';
+import BasicInfo from './BasicInfo';
+import FormContext from '../context/FormContext';
+import Copyright from './Copyright';
+
+const theme = createTheme();
+
+const style = {
+  // width: '100%',
+  // maxWidth: 360,
+  bgcolor: 'background.paper',
+  mt: 3,
+  marginTop: 8,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+
+};
 
 function Questions() {
   const { currentStep, setCurrentStep } = useContext(FormContext);
@@ -96,7 +124,7 @@ function Questions() {
     Next(e);
   };
 
-  const showUserData = async ({ currentTarget: { value } }) => {
+  const showUserData = async (value) => {
     console.log(value, 'valor do botão');
     const arrStorage = await JSON.parse(localStorage.getItem('lista_de_usuários'));
     let user = Object.values(arrStorage).find(({ user_info: { id } }) => id === value);
@@ -113,19 +141,6 @@ function Questions() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* {(currentStep > 0 && currentStep < 5) && (
-      <div>
-        <h1>Novo Usuário</h1>
-        <Stepper
-          steps={sections}
-          activeStep={currentStep}
-          activeColor="red"
-          defaultBarColor="red"
-          completeColor="green"
-          completeBarColor="green"
-        />
-      </div>
-      )} */}
 
       {currentStep === 1 && (
       <>
@@ -160,32 +175,58 @@ function Questions() {
 
       {currentStep === 5 && (
       <div>
-        <div>
-          { emptyList ? <h3>Lista vazia</h3>
-            : (
-              <>
-                <div>
-                  <h3>id</h3>
-                </div>
-                <div>
-                  <h3>nome</h3>
-                </div>
-              </>
-            )}
-        </div>
-        <div>
-          { emptyList ? <h5>Não há usuários cadastrados</h5>
-            : (Object.values(usersArr).map((item) => (
-              <button value={Object.values(item)[0]} type="button" onClick={(e) => showUserData(e)}>
-                <div style={{ width: 800 }}>
-                  id: ${Object.values(item)[0]}
-                </div>
-                <div>
-                  nome: {Object.values(item)[1]}
-                </div>
-              </button>
-            )))}
-        </div>
+        <ThemeProvider theme={theme}>
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <Box
+              sx={{
+                marginTop: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Typography component="h1" variant="h5">
+                Usuários Cadastrados
+              </Typography>
+              <List
+                component="nav"
+                aria-label="mailbox folders"
+                sx={style}
+              >
+                <Grid container spacing={2}>
+                  <>
+                    <ListItem
+                      button
+                      divider
+                    >
+                      <ListItemText sx={{ fontWeight: 'bold' }} primary="Nome" />
+                      <ListItemText primary="id" />
+                    </ListItem>
+                    <Divider />
+                  </>
+                  { emptyList
+                    ? <h3>Lista vazia</h3>
+                    : (Object.values(usersArr).map((item) => (
+                      <>
+                        <ListItem
+                          button
+                          divider
+                          value={Object.values(item)[0]}
+                          onClick={() => showUserData(Object.values(item)[0])}
+                        >
+                          <ListItemText primary={Object.values(item)[1]} />
+                          <ListItemText primary={Object.values(item)[0]} />
+                        </ListItem>
+                        <Divider />
+                      </>
+                    )))}
+                </Grid>
+              </List>
+            </Box>
+            <Copyright sx={{ mt: 5 }} />
+          </Container>
+        </ThemeProvider>
       </div>
       )}
 
@@ -193,7 +234,7 @@ function Questions() {
         <div>
           <h2>Dados do usuário</h2>
           <div>
-            { (userPage.map((item) => (
+            { (labelsArr.map((item) => (
               <div value={item}>
                 <div>
                   {Object.values(item)}
@@ -202,7 +243,7 @@ function Questions() {
             )))}
           </div>
           <div>
-            { (labelsArr.map((item) => (
+            { (userPage.map((item) => (
               <div value={item}>
                 <div>
                   {Object.values(item)}

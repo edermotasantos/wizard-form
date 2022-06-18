@@ -14,8 +14,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ButtonGroup } from '@mui/material';
 import FormContext from '../context/FormContext';
 import Copyright from './Copyright';
+import Next from './Next';
+import Previous from './Previous';
 
 const theme = createTheme();
 
@@ -113,6 +116,13 @@ function Address() {
                 />
               </Grid>
             </Grid>
+            <ButtonGroup
+              orientation="horizontal"
+              fullWidth
+            >
+              <Previous />
+              <Next />
+            </ButtonGroup>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />

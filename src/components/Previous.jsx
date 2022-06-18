@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Button from '@mui/material/Button';
 import FormContext from '../context/FormContext';
 
-function Next() {
+function Previous() {
   const { setCurrentStep } = useContext(FormContext);
   return (
     <Button
@@ -10,11 +10,12 @@ function Next() {
       fullWidth
       variant="contained"
       sx={{ mt: 3, mb: 2 }}
-      onClick={() => setCurrentStep((prevState) => prevState + 1)}
+      onClick={() => setCurrentStep((prevState) => prevState - 1)}
+      color="error"
     >
-      Next
+      Previous
     </Button>
   );
 }
 
-export default Next;
+export default Previous;

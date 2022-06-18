@@ -143,20 +143,9 @@ function Questions() {
   return (
     <form onSubmit={handleSubmit}>
 
-      {currentStep === 1 && (
-        <BasicInfo />
-      )}
+      {currentStep === 1 && (<BasicInfo />)}
 
-      {currentStep === 2 && (
-      <>
-        <Address />
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <button type="button" onClick={previous}>Back</button>
-          {/* <button type="button" onClick={Next}>Next</button> */}
-          <Next />
-        </div>
-      </>
-      )}
+      {currentStep === 2 && (<Address />)}
 
       {currentStep === 3 && (
       <>

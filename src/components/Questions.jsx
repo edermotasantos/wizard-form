@@ -37,7 +37,6 @@ const style = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-
 };
 
 function Questions() {
@@ -233,24 +232,66 @@ function Questions() {
       {currentStep === 6 && (
         <div>
           <h2>Dados do usuário</h2>
-          <div>
-            { (labelsArr.map((item) => (
-              <div value={item}>
-                <div>
-                  {Object.values(item)}
-                </div>
-              </div>
-            )))}
-          </div>
-          <div>
-            { (userPage.map((item) => (
-              <div value={item}>
-                <div>
-                  {Object.values(item)}
-                </div>
-              </div>
-            )))}
-          </div>
+          <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+              <CssBaseline />
+              <Box
+                sx={{
+                  marginTop: 8,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography component="h1" variant="h5">
+                  Usuários Cadastrados
+                </Typography>
+                <List
+                  component="nav"
+                  aria-label="mailbox folders"
+                  sx={style}
+                >
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                      {(labelsArr.map((item) => (
+                        <>
+                          <ListItem
+                            divider
+                            value={Object.values(item)}
+                            item
+                            xs={12}
+                            sm={6}
+                          >
+                            <ListItemText primary={Object.values(item)} />
+                          </ListItem>
+                          <Divider />
+                        </>
+                      )))}
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      { emptyList
+                        ? <h3>Lista vazia</h3>
+                        : (userPage.map((item) => (
+                          <>
+                            <ListItem
+                              divider
+                              value={Object.values(item)}
+                              item
+                              xs={12}
+                              sm={6}
+                            >
+                              <ListItemText primary={Object.values(item)} />
+                            </ListItem>
+                            <Divider />
+                          </>
+                        )))}
+                    </Grid>
+                  </Grid>
+                </List>
+              </Box>
+              <Copyright sx={{ mt: 5 }} />
+            </Container>
+          </ThemeProvider>
         </div>
       )}
     </form>

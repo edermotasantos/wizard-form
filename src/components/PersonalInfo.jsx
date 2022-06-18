@@ -10,8 +10,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ButtonGroup } from '@mui/material';
 import FormContext from '../context/FormContext';
 import Copyright from './Copyright';
+import HandleSubmit from './HandleSubmit';
+import Previous from './Previous';
 
 const theme = createTheme();
 
@@ -95,6 +98,13 @@ function PersonalInfo() {
                 />
               </Grid>
             </Grid>
+            <ButtonGroup
+              orientation="horizontal"
+              fullWidth
+            >
+              <Previous />
+              <HandleSubmit />
+            </ButtonGroup>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />

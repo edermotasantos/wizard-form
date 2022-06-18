@@ -27,6 +27,8 @@ import BasicInfo from './BasicInfo';
 import FormContext from '../context/FormContext';
 import Copyright from './Copyright';
 import Next from './Next';
+import Previous from './Previous';
+import HandleSubmit from './HandleSubmit';
 
 const theme = createTheme();
 
@@ -75,55 +77,55 @@ function Questions() {
 
   const previous = () => setCurrentStep((prevState) => prevState - 1);
 
-  const clearNewForm = () => {
-    const formArr = [
-      'first_name',
-      'last_name',
-      'email',
-      'phone',
-      'address_1',
-      'cep_1',
-      'address_2',
-      'cep_2',
-      'birth_day',
-      'cpf',
-      'income',
-    ];
+  // const clearNewForm = () => {
+  //   const formArr = [
+  //     'first_name',
+  //     'last_name',
+  //     'email',
+  //     'phone',
+  //     'address_1',
+  //     'cep_1',
+  //     'address_2',
+  //     'cep_2',
+  //     'birth_day',
+  //     'cpf',
+  //     'income',
+  //   ];
 
-    formArr.forEach((name) => {
-      setNewForm((prevState) => ({
-        ...prevState,
-        [name]: '',
-      }));
-    });
-  };
+  //   formArr.forEach((name) => {
+  //     setNewForm((prevState) => ({
+  //       ...prevState,
+  //       [name]: '',
+  //     }));
+  //   });
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    setSelectedValue(0);
+  //   setSelectedValue(0);
 
-    setDataList((prevState) => ({
-      ...prevState,
-      [countUsersData]: newForm,
-    }));
+  //   setDataList((prevState) => ({
+  //     ...prevState,
+  //     [countUsersData]: newForm,
+  //   }));
 
-    clearNewForm();
-    setEmptyList(false);
+  //   clearNewForm();
+  //   setEmptyList(false);
 
-    console.log(countUsersData);
-    setCountUsersData((prevState) => prevState + 1);
+  //   console.log(countUsersData);
+  //   setCountUsersData((prevState) => prevState + 1);
 
-    const stringStorage = JSON.stringify(dataList);
-    localStorage.setItem('lista_de_usuários', stringStorage);
-    const arrStorage = JSON.parse(localStorage.getItem('lista_de_usuários'));
+  //   const stringStorage = JSON.stringify(dataList);
+  //   localStorage.setItem('lista_de_usuários', stringStorage);
+  //   const arrStorage = JSON.parse(localStorage.getItem('lista_de_usuários'));
 
-    console.log('dataList', dataList);
-    console.log('arrStorage', arrStorage);
-    // localStorage.clear();
-    console.log('usersArr', usersArr);
-    next(e);
-  };
+  //   console.log('dataList', dataList);
+  //   console.log('arrStorage', arrStorage);
+  //   // localStorage.clear();
+  //   console.log('usersArr', usersArr);
+  //   next(e);
+  // };
 
   const showUserData = async (value) => {
     console.log(value, 'valor do botão');
@@ -141,21 +143,13 @@ function Questions() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={<HandleSubmit />}>
 
       {currentStep === 1 && (<BasicInfo />)}
 
       {currentStep === 2 && (<Address />)}
 
-      {currentStep === 3 && (
-      <>
-        <PersonalInfo />
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <button type="button" onClick={previous}>Back</button>
-          <button type="button" onClick={handleSubmit}>Submit</button>
-        </div>
-      </>
-      )}
+      {currentStep === 3 && (<PersonalInfo />)}
 
       {currentStep === 4 && (
       <h2>cadastro concluído com sucesso!</h2>

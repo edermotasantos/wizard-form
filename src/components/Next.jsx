@@ -12,7 +12,7 @@ function Next() {
       sx={{ mt: 3, mb: 2 }}
       onClick={() => setCurrentStep((prevState) => prevState + 1)}
     >
-      Next
+      Proximo
     </Button>
   );
 }

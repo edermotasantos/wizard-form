@@ -13,7 +13,7 @@ function Previous() {
       onClick={() => setCurrentStep((prevState) => prevState - 1)}
       color="error"
     >
-      Previous
+      Voltar
     </Button>
   );
 }

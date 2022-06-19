@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useContext } from 'react';
-import { Select } from '@mui/material';
+import { Select, Typography } from '@mui/material';
 import { MenuItem } from '@material-ui/core';
 import FormContext from '../context/FormContext';
 
@@ -41,7 +41,9 @@ function Header() {
 
   return (
     <header>
-      <p>Wizard Form</p>
+      <Typography sx={{ m: '2rem' }} variant="h6" component="div" gutterBottom>
+        Wizard Form
+      </Typography>
       <div>
         <Select
           sx={{ m: '2rem' }}

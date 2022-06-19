@@ -1,17 +1,15 @@
-/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import Button from '@mui/material/Button';
 import FormContext from '../context/FormContext';
 
 function HandleSubmit() {
-  const { currentStep, setCurrentStep } = useContext(FormContext);
+  const { setCurrentStep } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
-  const { usersArr, setUsersArr } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
-  const { selectedValue, setSelectedValue } = useContext(FormContext);
+  const { setSelectedValue } = useContext(FormContext);
   const { countUsersData, setCountUsersData } = useContext(FormContext);
-  const { emptyList, setEmptyList } = useContext(FormContext);
-  const { userPage, setUserPage } = useContext(FormContext);
+  const { setEmptyList } = useContext(FormContext);
+
   const clearNewForm = () => {
     const formArr = [
       'first_name',
@@ -47,18 +45,10 @@ function HandleSubmit() {
 
     clearNewForm();
     setEmptyList(false);
-
-    console.log(countUsersData);
     setCountUsersData((prevState) => prevState + 1);
 
     const stringStorage = JSON.stringify(dataList);
     localStorage.setItem('lista_de_usuários', stringStorage);
-    const arrStorage = JSON.parse(localStorage.getItem('lista_de_usuários'));
-
-    console.log('dataList', dataList);
-    console.log('arrStorage', arrStorage);
-    // localStorage.clear();
-    console.log('usersArr', usersArr);
     setCurrentStep((prevState) => prevState + 1);
   };
   return (
@@ -68,6 +58,7 @@ function HandleSubmit() {
       variant="contained"
       sx={{ mt: 3, mb: 2 }}
       onClick={handleSubmit}
+      color="success"
     >
       Enviar
     </Button>

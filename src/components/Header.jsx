@@ -41,12 +41,12 @@ function Header() {
 
   return (
     <header>
-      <Typography sx={{ m: '1rem' }} variant="h6" component="div" gutterBottom>
+      <Typography sx={{ marginLeft: '1rem', marginTop: '1rem' }} variant="h6" component="div" gutterBottom>
         Wizard Form
       </Typography>
       <div>
         <Select
-          sx={{ m: '2rem' }}
+          sx={{ marginLeft: '2rem', marginTop: '1rem' }}
           labelId="menu"
           id="menu"
           value={selectedValue}

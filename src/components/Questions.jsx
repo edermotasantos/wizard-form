@@ -178,14 +178,14 @@ function Questions() {
               <CssBaseline />
               <Box
                 sx={{
-                  marginTop: 8,
+                  marginTop: -11,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                 }}
               >
-                <Typography component="h1" variant="h5">
-                  <h2>Dados do usuário</h2>
+                <Typography component="h1" variant="h5" sx={{ marginTop: 11, marginBottom: -8 }}>
+                  Dados do usuário
                 </Typography>
                 <List
                   component="nav"

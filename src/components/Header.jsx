@@ -41,7 +41,7 @@ function Header() {
 
   return (
     <header>
-      <Typography sx={{ m: '2rem' }} variant="h6" component="div" gutterBottom>
+      <Typography sx={{ m: '1rem' }} variant="h6" component="div" gutterBottom>
         Wizard Form
       </Typography>
       <div>

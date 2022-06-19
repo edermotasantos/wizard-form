@@ -100,7 +100,18 @@ function Questions() {
       {currentStep === 3 && (<PersonalInfo />)}
 
       {currentStep === 4 && (
-      <h2>cadastro concluído com sucesso!</h2>
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography sx={{ m: '1rem' }} variant="h4" component="div" gutterBottom>
+            cadastro concluído com sucesso!
+          </Typography>
+        </Box>
       )}
 
       {currentStep === 5 && (

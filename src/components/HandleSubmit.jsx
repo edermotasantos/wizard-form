@@ -5,7 +5,7 @@ import FormContext from '../context/FormContext';
 function HandleSubmit() {
   const { setCurrentStep } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
-  const { dataList, setDataList } = useContext(FormContext);
+  const { setDataList } = useContext(FormContext);
   const { setSelectedValue } = useContext(FormContext);
   const { countUsersData, setCountUsersData } = useContext(FormContext);
   const { setEmptyList } = useContext(FormContext);
@@ -47,8 +47,6 @@ function HandleSubmit() {
     setEmptyList(false);
     setCountUsersData((prevState) => prevState + 1);
 
-    const stringStorage = JSON.stringify(dataList);
-    localStorage.setItem('lista_de_usuários', stringStorage);
     setCurrentStep((prevState) => prevState + 1);
   };
   return (

@@ -37,7 +37,6 @@ function Address() {
       ...prevState,
       [name]: value,
     }));
-    console.log(newForm);
   };
 
   return (

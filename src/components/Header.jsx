@@ -28,10 +28,10 @@ function Header() {
     usersArr.map(({ id, full_name }) => `${id} ${full_name}\n`);
   };
 
-  const setvalue = (e) => {
+  const setvalue = async (e) => {
     const { target: { value } } = e;
     Next(e);
-    genId(e);
+    await genId(e);
     setSelectedValue(value);
     setSelectedValue(0);
     if (value === 5) {

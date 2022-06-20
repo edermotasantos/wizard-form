@@ -33,8 +33,8 @@ import HandleSubmit from './HandleSubmit';
 const theme = createTheme();
 
 const style = {
-  // width: '100%',
-  // maxWidth: 360,
+  width: '100%',
+  maxWidth: 360,
   bgcolor: 'background.paper',
   mt: 3,
   marginTop: 8,
@@ -75,10 +75,9 @@ function Questions() {
 
   const next = () => setCurrentStep((prevState) => prevState + 1);
 
-  const showUserData = async (value) => {
-    console.log(value, 'valor do botão');
-    const arrStorage = await JSON.parse(localStorage.getItem('lista_de_usuários'));
-    let user = Object.values(arrStorage).find(({ user_info: { id } }) => id === value);
+  const showUserData = (value) => {
+    const arrStorage = JSON.parse(localStorage.getItem('lista_de_usuários'));
+    let user = Object.values(arrStorage).find(({ id }) => id === value);
     const userSpliced = Object.values(user).splice(2, 9);
     user = Object.values(user);
     user = user[11];
@@ -86,7 +85,6 @@ function Questions() {
     user = [user[1], ...userSpliced];
 
     setUserPage(user);
-    console.log(user);
     next();
   };
 

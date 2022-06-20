@@ -5,7 +5,7 @@ import FormContext from './FormContext';
 
 // eslint-disable-next-line react/prop-types
 function FormProvider({ children }) {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1);
   const [newForm, setNewForm] = useState({
     first_name: '',
     last_name: '',
@@ -27,6 +27,7 @@ function FormProvider({ children }) {
   const [emptyList, setEmptyList] = useState(true);
   const [userPage, setUserPage] = useState();
   const [row, setRow] = useState();
+  const [countField, setCountField] = useState(0);
 
   const data = {
     currentStep,
@@ -49,6 +50,8 @@ function FormProvider({ children }) {
     setUserPage,
     row,
     setRow,
+    countField,
+    setCountField,
   };
 
   return (

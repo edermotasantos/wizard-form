@@ -21,18 +21,33 @@ const theme = createTheme();
 function PersonalInfo() {
   const { newForm, setNewForm } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
+  const { countUsersData } = useContext(FormContext);
+  const { countField, setCountField } = useContext(FormContext);
+
   const {
     birth_day,
     cpf,
     income,
   } = newForm;
 
+  const count = () => setCountField((prevState) => prevState + 1);
+
   const handleChange = ({ target: { value, name } }) => {
     setNewForm((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    console.log(dataList);
+    setDataList((prevState) => ({
+      ...prevState,
+      [countUsersData]: newForm,
+    }));
+
+    count();
+
+    if (countField === 10) {
+      const stringStorage = JSON.stringify(dataList);
+      localStorage.setItem('lista_de_usuários', stringStorage);
+    }
   };
 
   return (

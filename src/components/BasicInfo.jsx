@@ -41,6 +41,8 @@ function BasicInfo() {
       setNewForm((prevState) => ({
         ...prevState,
         user_info: userObj,
+        id: userObj.id,
+        full_name: userObj.full_name,
       }));
     }
 
@@ -48,8 +50,6 @@ function BasicInfo() {
       ...prevState,
       [name]: value,
     }));
-    console.log('newForm', newForm);
-    console.log('usersArr', usersArr);
   };
 
   return (

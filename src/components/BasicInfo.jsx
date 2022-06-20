@@ -15,12 +15,15 @@ import Copyright from './Copyright';
 import Next from './Next';
 
 const theme = createTheme();
+// const randomId = require('random-id');
 
 function BasicInfo() {
   const { newForm, setNewForm } = useContext(FormContext);
   const { usersArr, setUsersArr } = useContext(FormContext);
   const { newId } = useContext(FormContext);
   const { countUsersData } = useContext(FormContext);
+  const { setNewId } = useContext(FormContext);
+  const { countField, setCountField } = useContext(FormContext);
   const {
     first_name,
     last_name,
@@ -28,11 +31,24 @@ function BasicInfo() {
     phone,
   } = newForm;
 
-  const handleChange = ({ target: { value, name } }) => {
+  const count = () => setCountField((prevState) => prevState + 1);
+
+  // const genId = async () => {
+  //   const len = 30;
+  //   const pattern = 'aA0';
+  //   const id = await randomId(len, pattern);
+  //   await setNewId(id);
+  //   console.log('id', id);
+  // };
+
+  const handleChange = async (e) => {
+    const { target: { value, name } } = e;
+    // if (countField === 1) {
+    //   await genId(e);
+    // }
     if (first_name !== undefined && last_name !== undefined) {
       const fullName = `${first_name} ${last_name}`;
       const userObj = { id: newId, full_name: fullName };
-
       setUsersArr((prevState) => ({
         ...prevState,
         [countUsersData]: userObj,
@@ -45,6 +61,8 @@ function BasicInfo() {
         full_name: userObj.full_name,
       }));
     }
+
+    count();
 
     setNewForm((prevState) => ({
       ...prevState,

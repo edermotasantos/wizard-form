@@ -34,6 +34,7 @@ function HandleSubmit() {
   };
 
   const handleSubmit = (e) => {
+    console.log('id no submit', newForm);
     e.preventDefault();
 
     setSelectedValue(0);

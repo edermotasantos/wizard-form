@@ -24,6 +24,9 @@ const theme = createTheme();
 
 function Address() {
   const { newForm, setNewForm } = useContext(FormContext);
+  const { countField, setCountField } = useContext(FormContext);
+
+  const count = () => setCountField((prevState) => prevState + 1);
 
   const {
     address_1,
@@ -33,6 +36,7 @@ function Address() {
   } = newForm;
 
   const handleChange = ({ target: { value, name } }) => {
+    count();
     setNewForm((prevState) => ({
       ...prevState,
       [name]: value,

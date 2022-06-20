@@ -17,12 +17,14 @@ import HandleSubmit from './HandleSubmit';
 import Previous from './Previous';
 
 const theme = createTheme();
+const randomId = require('random-id');
 
 function PersonalInfo() {
   const { newForm, setNewForm } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
   const { countUsersData } = useContext(FormContext);
   const { countField, setCountField } = useContext(FormContext);
+  const { setNewId } = useContext(FormContext);
 
   const {
     birth_day,
@@ -32,7 +34,17 @@ function PersonalInfo() {
 
   const count = () => setCountField((prevState) => prevState + 1);
 
-  const handleChange = ({ target: { value, name } }) => {
+  const genId = async () => {
+    const len = 30;
+    const pattern = 'aA0';
+    const id = await randomId(len, pattern);
+    await setNewId(id);
+    console.log('id', id);
+    return id;
+  };
+
+  const handleChange = async (e) => {
+    const { target: { value, name } } = e;
     setNewForm((prevState) => ({
       ...prevState,
       [name]: value,
@@ -43,8 +55,20 @@ function PersonalInfo() {
     }));
 
     count();
+    console.log('countField', countField);
 
     if (countField === 10) {
+      const id = await genId(e);
+      console.log('id dentro do if', id);
+      setNewForm((prevState) => ({
+        ...prevState,
+        id,
+      }));
+      console.log(newForm);
+      setDataList((prevState) => ({
+        ...prevState,
+        [countUsersData]: newForm,
+      }));
       const stringStorage = JSON.stringify(dataList);
       localStorage.setItem('lista_de_usuários', stringStorage);
     }

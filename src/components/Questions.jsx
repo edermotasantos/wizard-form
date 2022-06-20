@@ -46,7 +46,6 @@ const style = {
 function Questions() {
   const { currentStep, setCurrentStep } = useContext(FormContext);
   const { newForm, setNewForm } = useContext(FormContext);
-  const { usersArr, setUsersArr } = useContext(FormContext);
   const { dataList, setDataList } = useContext(FormContext);
   const { selectedValue, setSelectedValue } = useContext(FormContext);
   const { countUsersData, setCountUsersData } = useContext(FormContext);
@@ -146,16 +145,16 @@ function Questions() {
                   </>
                   { emptyList
                     ? <h3>Lista vazia</h3>
-                    : (Object.values(usersArr).map((item) => (
+                    : (Object.values(dataList).map(({ id, full_name }) => (
                       <>
                         <ListItem
                           button
                           divider
-                          value={Object.values(item)[0]}
-                          onClick={() => showUserData(Object.values(item)[0])}
+                          value={id}
+                          onClick={() => showUserData(id)}
                         >
-                          <ListItemText primary={Object.values(item)[1]} />
-                          <ListItemText primary={Object.values(item)[0]} />
+                          <ListItemText primary={full_name} />
+                          <ListItemText primary={id} />
                         </ListItem>
                         <Divider />
                       </>

@@ -33,19 +33,8 @@ function BasicInfo() {
 
   const count = () => setCountField((prevState) => prevState + 1);
 
-  // const genId = async () => {
-  //   const len = 30;
-  //   const pattern = 'aA0';
-  //   const id = await randomId(len, pattern);
-  //   await setNewId(id);
-  //   console.log('id', id);
-  // };
-
   const handleChange = async (e) => {
     const { target: { value, name } } = e;
-    // if (countField === 1) {
-    //   await genId(e);
-    // }
     if (first_name !== undefined && last_name !== undefined) {
       const fullName = `${first_name} ${last_name}`;
       const userObj = { id: newId, full_name: fullName };

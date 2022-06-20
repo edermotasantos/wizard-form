@@ -9,6 +9,7 @@ function HandleSubmit() {
   const { setSelectedValue } = useContext(FormContext);
   const { countUsersData, setCountUsersData } = useContext(FormContext);
   const { setEmptyList } = useContext(FormContext);
+  const { setNoId } = useContext(FormContext);
 
   const clearNewForm = () => {
     const formArr = [
@@ -34,8 +35,8 @@ function HandleSubmit() {
   };
 
   const handleSubmit = (e) => {
-    console.log('id no submit', newForm);
     e.preventDefault();
+    setNoId(false);
 
     setSelectedValue(0);
 

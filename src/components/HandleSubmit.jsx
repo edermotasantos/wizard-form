@@ -15,6 +15,7 @@ function HandleSubmit() {
     const formArr = [
       'first_name',
       'last_name',
+      'full_name',
       'email',
       'phone',
       'address_1',
@@ -24,6 +25,7 @@ function HandleSubmit() {
       'birth_day',
       'cpf',
       'income',
+      'id',
     ];
 
     formArr.forEach((name) => {
@@ -36,7 +38,7 @@ function HandleSubmit() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setNoId(false);
+    setNoId(true);
 
     setSelectedValue(0);
 

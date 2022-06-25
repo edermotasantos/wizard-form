@@ -9,6 +9,7 @@ function FormProvider({ children }) {
   const [newForm, setNewForm] = useState({
     first_name: '',
     last_name: '',
+    full_name: '',
     email: '',
     phone: '',
     address_1: '',
@@ -18,6 +19,7 @@ function FormProvider({ children }) {
     birth_day: '',
     cpf: '',
     income: '',
+    id: '',
   });
   const [usersArr, setUsersArr] = useState([]);
   const [dataList, setDataList] = useState([]);

@@ -75,6 +75,7 @@ function PersonalInfo() {
     }
 
     if (everyFieldIsFilled === true) {
+      console.log('everyFieldIsFilled', everyFieldIsFilled);
       const stringStorage = JSON.stringify(dataList);
       localStorage.setItem('lista_de_usuários', stringStorage);
     }

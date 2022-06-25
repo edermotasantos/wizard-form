@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-wrap-multilines */
@@ -76,14 +75,11 @@ function Questions() {
 
   const showUserData = (value) => {
     const arrStorage = JSON.parse(localStorage.getItem('lista_de_usuários'));
-    let user = Object.values(arrStorage).find(({ id }) => id === value);
+    console.log(arrStorage);
+    const user = Object.values(arrStorage).find(({ id }) => id === value);
     const userSpliced = Object.values(user).splice(2, 9);
-    user = Object.values(user);
-    user = user[11];
-    user = Object.values(user);
-    user = [user[1], ...userSpliced];
 
-    setUserPage(user);
+    setUserPage(userSpliced);
     next();
   };
 
@@ -151,6 +147,7 @@ function Questions() {
                           button
                           divider
                           value={id}
+                          key={Object.values(id)[9]}
                           onClick={() => showUserData(id)}
                         >
                           <ListItemText primary={full_name} />
@@ -199,6 +196,7 @@ function Questions() {
                               divider
                               value={Object.values(item)}
                               item
+                              key={Object.values(item)[9]}
                               xs={12}
                             >
                               <ListItemText primary={`${labelsArr[index]} ${Object.values(item)}`.replace(/,/g, '')} />

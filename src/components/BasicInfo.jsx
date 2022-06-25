@@ -15,14 +15,11 @@ import Copyright from './Copyright';
 import Next from './Next';
 
 const theme = createTheme();
-// const randomId = require('random-id');
 
 function BasicInfo() {
   const { newForm, setNewForm } = useContext(FormContext);
   const { usersArr, setUsersArr } = useContext(FormContext);
-  const { newId } = useContext(FormContext);
   const { countUsersData } = useContext(FormContext);
-  const { setNewId } = useContext(FormContext);
   const { countField, setCountField } = useContext(FormContext);
   const {
     first_name,
@@ -37,17 +34,14 @@ function BasicInfo() {
     const { target: { value, name } } = e;
     if (first_name !== undefined && last_name !== undefined) {
       const fullName = `${first_name} ${last_name}`;
-      const userObj = { id: newId, full_name: fullName };
       setUsersArr((prevState) => ({
         ...prevState,
-        [countUsersData]: userObj,
+        [countUsersData]: fullName,
       }));
 
       setNewForm((prevState) => ({
         ...prevState,
-        user_info: userObj,
-        id: userObj.id,
-        full_name: userObj.full_name,
+        full_name: fullName,
       }));
     }
 

@@ -7,7 +7,7 @@ import UserList from './UserList';
 import UserData from './UserData';
 import UserRegisteredSuccessfully from './UserRegisteredSuccessfully';
 
-function ConditionalRenderingInterface() {
+function Interface() {
   const { currentStep } = useContext(FormContext);
   const renderObj = {
     1: <BasicInfo />,
@@ -25,4 +25,4 @@ function ConditionalRenderingInterface() {
   );
 }
 
-export default ConditionalRenderingInterface;
+export default Interface;

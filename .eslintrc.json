@@ -20,6 +20,9 @@
         "react"
     ],
     "rules": {
-      "rest-spread-spacing": ["error", "never"]
+      "rest-spread-spacing": ["error", "never"],
+      "camelcase": "off",
+      "react/jsx-props-no-spreading": "off",
+      "react/jsx-curly-brace-presence": "off"
     }
 }

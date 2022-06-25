@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React, { useContext } from 'react';
 import { Select, Typography } from '@mui/material';
 import { MenuItem } from '@material-ui/core';

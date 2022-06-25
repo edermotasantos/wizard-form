@@ -1,11 +1,3 @@
-/* eslint-disable react/jsx-curly-brace-presence */
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-unused-vars */
-/* eslint-disable camelcase */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-unused-expressions */
-
 import React, { useContext } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -24,7 +16,7 @@ const theme = createTheme();
 
 function Address() {
   const { newForm, setNewForm } = useContext(FormContext);
-  const { countField, setCountField } = useContext(FormContext);
+  const { setCountField } = useContext(FormContext);
 
   const count = () => setCountField((prevState) => prevState + 1);
 

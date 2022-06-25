@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React, { useContext } from 'react';
 import {
   Typography,

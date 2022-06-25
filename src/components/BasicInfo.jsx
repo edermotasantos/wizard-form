@@ -1,7 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-unused-expressions */
 import React, { useContext } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -18,9 +14,9 @@ const theme = createTheme();
 
 function BasicInfo() {
   const { newForm, setNewForm } = useContext(FormContext);
-  const { usersArr, setUsersArr } = useContext(FormContext);
+  const { setUsersArr } = useContext(FormContext);
   const { countUsersData } = useContext(FormContext);
-  const { countField, setCountField } = useContext(FormContext);
+  const { setCountField } = useContext(FormContext);
   const {
     first_name,
     last_name,

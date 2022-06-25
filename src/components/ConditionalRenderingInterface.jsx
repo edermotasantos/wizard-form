@@ -7,24 +7,22 @@ import UserList from './UserList';
 import UserData from './UserData';
 import UserRegisteredSuccessfully from './UserRegisteredSuccessfully';
 
-function Questions() {
+function ConditionalRenderingInterface() {
   const { currentStep } = useContext(FormContext);
+  const renderObj = {
+    1: <BasicInfo />,
+    2: <Address />,
+    3: <PersonalInfo />,
+    4: <UserRegisteredSuccessfully />,
+    5: <UserList />,
+    6: <UserData />,
+  };
 
   return (
     <form>
-      {currentStep === 1 && (<BasicInfo />)}
-
-      {currentStep === 2 && (<Address />)}
-
-      {currentStep === 3 && (<PersonalInfo />)}
-
-      {currentStep === 4 && (<UserRegisteredSuccessfully />)}
-
-      {currentStep === 5 && (<UserList />)}
-
-      {currentStep === 6 && (<UserData />)}
+      {renderObj[currentStep]}
     </form>
   );
 }
 
-export default Questions;
+export default ConditionalRenderingInterface;

@@ -9,7 +9,7 @@ import UserRegisteredSuccessfully from './UserRegisteredSuccessfully';
 
 function Interface() {
   const { currentStep } = useContext(FormContext);
-  const renderObj = {
+  const renderComponent = {
     1: <BasicInfo />,
     2: <Address />,
     3: <PersonalInfo />,
@@ -20,7 +20,7 @@ function Interface() {
 
   return (
     <form>
-      {renderObj[currentStep]}
+      {renderComponent[currentStep]}
     </form>
   );
 }

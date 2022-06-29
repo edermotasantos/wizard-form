@@ -61,7 +61,7 @@ Em `Lista de Clientes` ao clicar no `nome` ou `id` do usuário cadastrado, é re
  - `CPF`
  - `renda mensal`
  
- ## Geração de Id
+ ### Geração de Id
  
  O `id` é gerado durante o cadastro do usuário, após um campo ser preenchido.
  
@@ -94,7 +94,7 @@ Os Dados devem ser enviados em formato `JSON` da seguinte forma:
 ```
 O armazenamento é feito no localStorage com uma lista de usuários.
 
-### Tecnologias
+## Tecnologias
 
 * `React.js`
 * `Context API e Hooks`
@@ -118,8 +118,6 @@ Copie o ssh do projeto `git@github.com:edermotasantos/wizard-form.git`
   * `cd wizard-form`
   * `npm install`
   * `npm start`
-
----
 
 ## Modo de utilização
 

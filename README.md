@@ -1,71 +1,141 @@
-# Getting Started with Create React App
+# Wizard Form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-## Available Scripts
+<div> 
+  <a href="https://www.linkedin.com/in/eder-santos-dev/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+  <a href = "mailto:eder.mota@outlook.com"><img src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" target="_blank"></a> 
+</div>
 
-In the project directory, you can run:
+---
+## Contexto
 
-### `npm start`
+Esse projeto foi desenvolvido para uma vaga de Front End na empresa AVA.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+A proposta era desenvolver uma aplicação Front End de cadastro no formato stepper (Wizard) utilizando React.js. Desse modo permitir cadastrar, listar os usuários por nome e exibir os dados de um determinado usuário quando solicitado.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Renderização
 
-### `npm test`
+Ela deve possuir um `menu` com as opções `Novo Cliente` e `Lista de Clientes`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Na opção `Novo cliente` deve possuir um formulário divido em 3 renderizações condicionais e uma quarta renderização para mensagem de cadastro concluído com sucesso.
 
-### `npm run build`
+### Primeira Renderização
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+A primeira renderização possui o botão `Próximo` para ir para a próxima renderização e os seguintes campos:
+ - `nome`
+ - `sobrenome`
+ -  `e-mail`
+ - `telefone`
+ 
+ ### Segunda Renderização
+ 
+ A segunda renderização possui o botão `Próximo` para ir para a próxima renderização, um botão `Voltar` para voltar e os seguintes campos:
+ - `endereço 1`
+ - `CEP 1`
+ - `endereço 2`
+ - `CEP 2`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Terceira Renderização
+ 
+ A segunda renderização possui o botão `Enviar` para submeter os dados cadastrados, um botão `Voltar` para voltar e os seguintes campos:
+ - `data de nascimento`
+ - `CPF`
+ - `renda mensal`
+ 
+## Lista de Usuários
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Após inclusão do usuário e ao clicar em `Lista de Clientes` é exibido o `nome completo` e o `id` do usuário. Caso não tenha sido cadastrado nenhum usuário, ao clicar em `Lista de Clientes` será exibido uma mensagem de que a lista está vazia.
 
-### `npm run eject`
+## Dados do Usuário
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Em `Lista de Clientes` ao clicar no `nome` ou `id` do usuário cadastrado, é renderizado os dados cadastrados desse cliente. Os dados exibidos são:
+ - `sobrenome`
+ -  `e-mail`
+ - `telefone`
+ - `endereço 1`
+ - `CEP 1`
+ - `endereço 2`
+ - `CEP 2`
+ - `data de nascimento`
+ - `CPF`
+ - `renda mensal`
+ 
+ ## Geração de Id
+ 
+ O `id` é gerado durante o cadastro do usuário, após um campo ser preenchido.
+ 
+ ## Responsividade
+ 
+Foi proposto que o desafio técnico fosse disponibilizado no Github e fosse observado a experiência do cliente, dando enfâse em uma aplicação responsiva que funcione bem em telas de diversos formatos.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Armazenamento
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Os Dados devem ser enviados em formato `JSON` da seguinte forma:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```json
+[
+  {
+      "first_name": "nome",
+      "last_name": "sobrenome",
+      "full_name": "nome completo",
+      "email": "email@email.com",
+      "phone": "(12)3456-7891",
+      "address_1": "rua XXXX",
+      "cep_1": "01234567",
+      "address_2": "rua YYYY",
+      "cep_2": "01234567",
+      "birth_day": "DD/MM/YYYY",
+      "cpf": "123.456.789-10",
+      "income": "XXXX,XX",
+      "id": "M7R7wesNcr6KsCTStUWPTiZrTIRRyM",
+  }
+]
+```
+O armazenamento é feito no localStorage com uma lista de usuários.
 
-## Learn More
+### Tecnologias
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* `React.js`
+* `Context API e Hooks`
+* `Material UI`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Desenvolvimento
 
-### Code Splitting
+O desenvolvimento da aplicação foi feito no `VSCODE` utilizando `React.js` e `Material UI` não apresentando muitas dificuldades. Mas foi necessária um estudo mais detalhado na documentação do Material UI para o melhor uso. Foi entendido que a renderização condicional seria a mais adequada para ter como resultado um stepper wizard, descartando o uso da extensão `React Stepper Horizontal`.   
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Como instalar
 
-### Analyzing the Bundle Size
+Pre-requisitos para rodar o projeto: 
+- `React.js`
+- `Material UI`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Copie o ssh do projeto `git@github.com:edermotasantos/wizard-form.git`
 
-### Making a Progressive Web App
+* Abra um terminal no seu computador e utilize os comandos a baixo na ordem que são apresentados:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  * `git clone git@github.com:edermotasantos/wizard-form.git`
+  * `cd wizard-form`
+  * `npm install`
+  * `npm start`
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Modo de utilização
 
-### Deployment
+A tela inicial é a de cadastro e basta digitar os dados solicitados clicando no botão `Próximo` e ao concluir clicar em `Enviar`. Caso necessário voltar em algum campo é só clicar em `Voltar`. Para ver a lista de usuários, clique em `menu` e clique em `Lista de Clientes` e caso deseje ver os dados detalhados, basta clicar no `nome` ou no `id`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Próximos passos
 
-### `npm run build` fails to minify
+* Implementação de Testes
+* Implementação de aplicação Back End
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# wizard-form
+---
+
+
+# Entre em contato:
+
+<div> 
+  <a href="https://www.linkedin.com/in/eder-santos-dev/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+  <a href = "mailto:eder.mota@outlook.com"><img src="https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white" target="_blank"></a> 
+</div>

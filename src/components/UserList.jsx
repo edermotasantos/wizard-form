@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import FormContext from '../context/FormContext';
 import Copyright from './Copyright';
 
@@ -28,20 +29,15 @@ const style = {
 };
 
 function UserList() {
-  const { setCurrentStep } = useContext(FormContext);
-  const { setUserPage } = useContext(FormContext);
   const { dataList } = useContext(FormContext);
   const { emptyList } = useContext(FormContext);
+  const { setIsLoading } = useContext(FormContext);
 
-  const next = () => setCurrentStep((prevState) => prevState + 1);
+  const navigate = useNavigate();
 
   const showUserData = (value) => {
-    const arrStorage = JSON.parse(localStorage.getItem('lista_de_usuários'));
-    const user = Object.values(arrStorage).find(({ id }) => id === value);
-    const userSpliced = Object.values(user).splice(2, 9);
-
-    setUserPage(userSpliced);
-    next();
+    setIsLoading(true);
+    navigate(`/usuario/${value}`);
   };
 
   return (

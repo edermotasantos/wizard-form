@@ -1,16 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
 import Form from './pages/Form';
+import User from './pages/User';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="app">
-        <Routes>
-          <Route index element={<Form />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route index element={<Form />} />
+        <Route path="usuario/:id" element={<User />} />
+      </Routes>
     </BrowserRouter>
   );
 }

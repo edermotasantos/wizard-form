@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
 import { Select, Typography } from '@mui/material';
 import { MenuItem } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
 import FormContext from '../context/FormContext';
 
 function Header() {
   const { usersArr } = useContext(FormContext);
-
   const { setCurrentStep } = useContext(FormContext);
   const { selectedValue, setSelectedValue } = useContext(FormContext);
+
+  const navigate = useNavigate();
+
   const Next = ({ target: { value } }) => {
     const num = parseInt(value, 10);
     setCurrentStep(() => num);
@@ -17,13 +20,16 @@ function Header() {
     usersArr.map(({ id, full_name }) => `${id} ${full_name}\n`);
   };
 
-  const setvalue = async (e) => {
+  const setvalue = (e) => {
     const { target: { value } } = e;
     Next(e);
     setSelectedValue(value);
     setSelectedValue(0);
     if (value === 5) {
       listUsers();
+    }
+    if (value === 1) {
+      navigate('/');
     }
   };
 
@@ -42,7 +48,6 @@ function Header() {
           onChange={(e) => {
             setvalue(e);
             Next(e);
-            // genId(e);
           }}
         >
           <MenuItem value={0} disabled>Menu</MenuItem>

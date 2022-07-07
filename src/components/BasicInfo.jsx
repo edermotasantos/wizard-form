@@ -26,7 +26,7 @@ function BasicInfo() {
 
   const count = () => setCountField((prevState) => prevState + 1);
 
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     const { target: { value, name } } = e;
     if (first_name !== undefined && last_name !== undefined) {
       const fullName = `${first_name} ${last_name}`;

@@ -31,11 +31,11 @@ function PersonalInfo() {
 
   const count = () => setCountField((prevState) => prevState + 1);
 
-  const genId = async () => {
+  const genId = () => {
     const len = 30;
     const pattern = 'aA0';
-    const id = await randomId(len, pattern);
-    await setNewId(id);
+    const id = randomId(len, pattern);
+    setNewId(id);
     return id;
   };
 
@@ -54,7 +54,7 @@ function PersonalInfo() {
     const everyFieldIsFilled = Object.values(newForm).every((field) => field.length !== 0);
     const someFieldIsFilled = Object.values(newForm).some((field) => field.length !== 0);
     if (someFieldIsFilled === true && noId === true) {
-      const id = await genId(e);
+      const id = genId(e);
       setNewForm((prevState) => ({
         ...prevState,
         id,
@@ -72,7 +72,7 @@ function PersonalInfo() {
 
     if (everyFieldIsFilled === true) {
       const stringStorage = JSON.stringify(dataList);
-      localStorage.setItem('lista_de_usuários', stringStorage);
+      await localStorage.setItem('lista_de_usuários', stringStorage);
     }
   };
 
@@ -103,7 +103,7 @@ function PersonalInfo() {
                   label="Data de Nascimento"
                   autoFocus
                   value={birth_day}
-                  onChange={(e) => {
+                  onChange={async (e) => {
                     handleChange(e);
                   }}
                 />

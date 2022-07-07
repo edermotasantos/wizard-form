@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import FormContext from './FormContext';
 
-// eslint-disable-next-line react/prop-types
 function FormProvider({ children }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [newForm, setNewForm] = useState({
@@ -31,6 +31,7 @@ function FormProvider({ children }) {
   const [row, setRow] = useState();
   const [countField, setCountField] = useState(0);
   const [noId, setNoId] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const data = {
     currentStep,
@@ -57,6 +58,8 @@ function FormProvider({ children }) {
     setCountField,
     noId,
     setNoId,
+    isLoading,
+    setIsLoading,
   };
 
   return (
@@ -66,8 +69,8 @@ function FormProvider({ children }) {
   );
 }
 
-FormContext.propTypes = ({
-  children: PropTypes.element.isRequired,
-});
+FormContext.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default FormProvider;

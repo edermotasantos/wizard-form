@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   Typography,
   List,
@@ -11,8 +11,10 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useParams } from 'react-router-dom';
 import FormContext from '../context/FormContext';
 import Copyright from './Copyright';
+import Loading from './Loading';
 
 const theme = createTheme();
 
@@ -28,8 +30,9 @@ const style = {
 };
 
 function UserData() {
-  const { emptyList } = useContext(FormContext);
-  const { userPage } = useContext(FormContext);
+  const { isLoading, setIsLoading } = useContext(FormContext);
+  const { userPage, setUserPage } = useContext(FormContext);
+  const { id } = useParams();
 
   const labelsArr = [
     'nome completo:',
@@ -43,6 +46,20 @@ function UserData() {
     'CPF:',
     'salário mensal:',
   ];
+
+  const showUserData = async () => {
+    const arrStorage = await JSON.parse(localStorage.getItem('lista_de_usuários'));
+    const userData = Object.values(arrStorage).find((user) => user.id === id);
+    const userSpliced = Object.values(userData).splice(2, 9);
+    setIsLoading(false);
+    setUserPage(userSpliced);
+  };
+
+  if (isLoading === true) {
+    useEffect(() => {
+      showUserData();
+    }, []);
+  }
 
   return (
     <div>
@@ -67,8 +84,8 @@ function UserData() {
             >
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  { emptyList
-                    ? <h3>Lista vazia</h3>
+                  { !userPage
+                    ? <Loading />
                     : (userPage.map((item, index) => (
                       <>
                         <ListItem

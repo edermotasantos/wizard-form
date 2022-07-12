@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import FormContext from '../context/FormContext';
 import Copyright from './Copyright';
+import Loading from './Loading';
 
 const theme = createTheme();
 
@@ -73,7 +74,7 @@ function UserList() {
                   <Divider />
                 </>
                 { emptyList
-                  ? <h3>Lista vazia</h3>
+                  ? <Loading />
                   : (Object.values(dataList).map(({ id, full_name }) => (
                     <>
                       <ListItem

@@ -39,7 +39,7 @@ function PersonalInfo() {
     return id;
   };
 
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     const { target: { value, name } } = e;
     setNewForm((prevState) => ({
       ...prevState,
@@ -72,7 +72,7 @@ function PersonalInfo() {
 
     if (everyFieldIsFilled === true) {
       const stringStorage = JSON.stringify(dataList);
-      await localStorage.setItem('lista_de_usuários', stringStorage);
+      localStorage.setItem('lista_de_usuários', stringStorage);
     }
   };
 
@@ -103,7 +103,7 @@ function PersonalInfo() {
                   label="Data de Nascimento"
                   autoFocus
                   value={birth_day}
-                  onChange={async (e) => {
+                  onChange={(e) => {
                     handleChange(e);
                   }}
                 />

@@ -27,6 +27,7 @@ function Header() {
     setSelectedValue(0);
     if (value === 5) {
       listUsers();
+      navigate('/usuarios');
     }
     if (value === 1) {
       navigate('/');
